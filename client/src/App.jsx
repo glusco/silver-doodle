@@ -11,14 +11,15 @@ function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    // Test the API connection
+    // Test API connection
     api.get('/')
       .then(response => {
         setMessage(response.data.msg);
-        console.log('API Response:', response.data);
+        console.log('Connected to API:', response.data);
       })
       .catch(error => {
         console.error('API Error:', error);
+        setMessage('Error connecting to API');
       });
   }, []);
 
@@ -35,7 +36,7 @@ function App() {
         <main style={styles.main}>
           <h1 style={styles.title}>Welcome to Question Board</h1>
           <p style={styles.subtitle}>A place to ask and answer questions</p>
-          <p style={styles.apiMessage}>API Message: {message}</p>
+          <p style={styles.apiMessage}>API Status: {message}</p>
           <div style={styles.buttons}>
             <button style={styles.button}>Ask a Question</button>
             <button style={styles.button}>Browse Questions</button>
